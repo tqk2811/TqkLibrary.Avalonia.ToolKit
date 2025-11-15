@@ -11,7 +11,7 @@
 		<PackageReference Include="Avalonia" Version="11.3.8" />
 		<PackageReference Include="TqkLibrary.CompilerServices" Version="1.0.0.3" />
 		<PackageReference Include="TqkLibrary.Data.Json" Version="1.0.0-build20240628151114" />
-		<PackageReference Include="TqkLibrary.Utils" Version="1.0.0-build20251101160050" />
+		<PackageReference Include="TqkLibrary.Utils" Version="1.0.0-build20251115111030" />
 	</ItemGroup>
 
 	<ItemGroup>

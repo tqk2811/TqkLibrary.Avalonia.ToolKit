@@ -1,21 +1,10 @@
 ﻿using Avalonia.Threading;
 using TqkLibrary.Avalonia.Utils.Interfaces;
-using TqkLibrary.Utils;
 
 namespace TqkLibrary.Avalonia.Utils
 {
     public static class TqkLibraryAvaloniaExtensions
     {
-        public static T RemoveFlag<T>(this T @enum, T flag) where T : struct, Enum
-        {
-            return (T)@enum.And(flag.Not());
-        }
-        public static bool HasAnyFlag<T>(this T @enum, T flag) where T : struct, Enum
-        {
-            var e = @enum.RemoveFlag(flag);
-            return !e.Equals(@enum);
-        }
-
         public static System.Drawing.Color ToDrawingColor(this global::Avalonia.Media.Color color)
             => System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B);
         public static global::Avalonia.Media.Color ToAvaloniaColor(this System.Drawing.Color color)
