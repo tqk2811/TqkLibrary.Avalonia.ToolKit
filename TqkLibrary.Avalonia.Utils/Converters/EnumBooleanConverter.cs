@@ -37,7 +37,7 @@ namespace TqkLibrary.Avalonia.Utils.Converters
                 if (IsAttributeFlag) return CurrentValue.HasFlag(p);// ((mask & target) != 0);
                 else return CurrentValue.Equals(p);
             }
-            else if (value.GetType().IsValueType && parameter.GetType().IsValueType)
+            else if (value?.GetType()?.IsValueType == true && parameter?.GetType()?.IsValueType == true)
             {
                 CurrentUlongValue = System.Convert.ToUInt64(value);
                 if (IsAttributeFlag) return (CurrentUlongValue & System.Convert.ToUInt64(parameter)) != 0;
