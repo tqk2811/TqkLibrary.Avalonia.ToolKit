@@ -76,7 +76,7 @@ namespace TqkLibrary.Avalonia.Utils.ViewModels
 
 
         [SetsRequiredMembers]
-        public MenuViewModelBase(TEnum @enum, IEnumerable<MenuViewModelBase<TEnum>> childs)
+        public MenuViewModelBase(TEnum @enum, IEnumerable<MenuViewModelBase> childs)
         {
             this.Value = @enum;
             this.DisplayName = @enum.GetAttribute<DisplayNameAttribute>()?.Name ?? @enum.ToString();
