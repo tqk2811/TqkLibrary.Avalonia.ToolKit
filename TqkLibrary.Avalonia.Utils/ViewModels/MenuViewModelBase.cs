@@ -87,4 +87,26 @@ namespace TqkLibrary.Avalonia.Utils.ViewModels
             }
         }
     }
+    public class MenuViewModelBase<TEnum, TParam> : MenuViewModelBase<TEnum> where TEnum : Enum
+    {
+        [SetsRequiredMembers]
+        public MenuViewModelBase(TEnum @enum, ICommand command) : base(@enum, command)
+        {
+        }
+
+        [SetsRequiredMembers]
+        public MenuViewModelBase(TEnum @enum, Action<TParam> execute) : this(@enum, new BaseCommand<TParam>(execute))
+        {
+        }
+
+        [SetsRequiredMembers]
+        public MenuViewModelBase(TEnum @enum, Func<TParam, Task> execute) : this(@enum, new BaseCommand<TParam>(execute))
+        {
+        }
+
+        [SetsRequiredMembers]
+        public MenuViewModelBase(TEnum @enum, IEnumerable<MenuViewModelBase> childs) : base(@enum, childs)
+        {
+        }
+    }
 }
