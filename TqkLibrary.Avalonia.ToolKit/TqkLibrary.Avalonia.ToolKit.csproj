@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net6.0;net8.0;net8.0-browser</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>12.0</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.3.8" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="Svg.Controls.Skia.Avalonia" Version="11.3.6.2" />
+		<PackageReference Include="TqkLibrary.CompilerServices" Version="1.0.0.3" />
+		<PackageReference Include="TqkLibrary.Data.Json" Version="1.0.0-build20240628151114" />
+		<PackageReference Include="TqkLibrary.Utils" Version="1.0.0-build20251125201106" />
+	</ItemGroup>
+	
+</Project>
