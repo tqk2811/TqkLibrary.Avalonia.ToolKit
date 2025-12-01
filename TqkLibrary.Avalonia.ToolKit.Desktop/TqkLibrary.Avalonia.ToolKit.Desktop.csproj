@@ -9,7 +9,6 @@
 
 	<ItemGroup>
 		<PackageReference Include="Avalonia.Desktop" Version="11.3.8" />
-		<PackageReference Include="TqkLibrary.Data.Json" Version="1.0.0-build20240628151114" />
 	</ItemGroup>
 
 	<ItemGroup>
