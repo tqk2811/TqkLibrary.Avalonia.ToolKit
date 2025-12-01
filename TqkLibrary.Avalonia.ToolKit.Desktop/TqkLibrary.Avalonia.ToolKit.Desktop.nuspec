@@ -13,17 +13,17 @@
 		<dependencies>
 			<group targetFramework="netstandard2.0">
 				<dependency id="Avalonia.Desktop" version="11.3.8" />
-				<dependency id="TqkLibrary.Avalonia.ToolKit" version="1.0.0-build20251129110824" />
+				<dependency id="TqkLibrary.Avalonia.ToolKit" version="1.0.0-build20251201144433" />
 				<dependency id="TqkLibrary.Data.Json" version="1.0.0-build20240628151114" />
 			</group>
 			<group targetFramework="net6.0">
 				<dependency id="Avalonia.Desktop" version="11.3.8" />
-				<dependency id="TqkLibrary.Avalonia.ToolKit" version="1.0.0-build20251129110824" />
+				<dependency id="TqkLibrary.Avalonia.ToolKit" version="1.0.0-build20251201144433" />
 				<dependency id="TqkLibrary.Data.Json" version="1.0.0-build20240628151114" />
 			</group>
 			<group targetFramework="net8.0">
 				<dependency id="Avalonia.Desktop" version="11.3.8" />
-				<dependency id="TqkLibrary.Avalonia.ToolKit" version="1.0.0-build20251129110824" />
+				<dependency id="TqkLibrary.Avalonia.ToolKit" version="1.0.0-build20251201144433" />
 				<dependency id="TqkLibrary.Data.Json" version="1.0.0-build20240628151114" />
 			</group>
 		</dependencies>
