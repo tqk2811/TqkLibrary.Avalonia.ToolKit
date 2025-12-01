@@ -1,0 +1,19 @@
+<Project>
+	<ItemGroup>
+		<Compile Remove="$(MSBuildThisFileDirectory)..\contentFiles\any\any\wwwroot\**\*.js" />
+		<RazorJSModule Remove="$(MSBuildThisFileDirectory)..\contentFiles\any\any\wwwroot\**\*.js" />
+	</ItemGroup>
+
+	<Target Name="CopyTqkJsToProjectWwwroot" BeforeTargets="Build">
+		<ItemGroup>
+			<TqkJsFiles Include="$(MSBuildThisFileDirectory)..\contentFiles\any\any\wwwroot\**\*.js" />
+		</ItemGroup>
+		<MakeDir Directories="$(ProjectDir)wwwroot\TqkLibrary.Avalonia.ToolKit\%(TqkJsFiles.RecursiveDir)" />
+		<Copy
+		  SourceFiles="@(TqkJsFiles)"
+		  DestinationFiles="$(ProjectDir)wwwroot\TqkLibrary.Avalonia.ToolKit\%(TqkJsFiles.RecursiveDir)%(TqkJsFiles.Filename)%(TqkJsFiles.Extension)"
+		  OverwriteReadOnlyFiles="true"
+		  />
+	</Target>
+
+</Project>
