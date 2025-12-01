@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices.JavaScript;
 using TqkLibrary.Avalonia.ToolKit.Interfaces.Services;
 using TqkLibrary.Avalonia.ToolKit.Models;
@@ -7,20 +8,23 @@ namespace TqkLibrary.Avalonia.ToolKit.Browser.Services
 {
     static unsafe partial class BrowserClipboardServiceHelper
     {
-        [JSImport("writeText", "clipboardHelper")]
-        internal static partial Task WriteText(string text);
+        [JSImport("writeText", "TqkLibrary.Avalonia.ToolKit.ClipboardHelper")]
+        internal static partial Task writeText(string text);
 
-        [JSImport("readText", "clipboardHelper")]
-        internal static partial Task<string?> ReadText();
+        [JSImport("readText", "TqkLibrary.Avalonia.ToolKit.ClipboardHelper")]
+        internal static partial Task<string?> readText();
 
-        [JSImport("checkPermissions", "clipboardHelper")]
-        internal static partial Task<string> HasPermissionAsync();
+        [JSImport("checkReadPermissions", "TqkLibrary.Avalonia.ToolKit.ClipboardHelper")]
+        internal static partial Task<bool> checkReadPermissions();
 
-        [JSImport("requestReadPermissions", "clipboardHelper")]
-        internal static partial Task<bool> RequestReadPermissionAsync();
+        [JSImport("checkWritePermissions", "TqkLibrary.Avalonia.ToolKit.ClipboardHelper")]
+        internal static partial Task<bool> checkWritePermissions();
 
-        [JSImport("requestWritePermissions", "clipboardHelper")]
-        internal static partial Task<bool> RequestWritePermissionAsync();
+        [JSImport("requestReadPermissions", "TqkLibrary.Avalonia.ToolKit.ClipboardHelper")]
+        internal static partial Task<bool> requestReadPermissions();
+
+        [JSImport("requestWritePermissions", "TqkLibrary.Avalonia.ToolKit.ClipboardHelper")]
+        internal static partial Task<bool> requestWritePermissions();
     }
     public sealed class BrowserClipboardService : IClipboardService
     {
@@ -35,11 +39,11 @@ namespace TqkLibrary.Avalonia.ToolKit.Browser.Services
             bool isCanWrite = false;
             if (request.Value.Read == true)
             {
-                isCanWrite = await BrowserClipboardServiceHelper.RequestReadPermissionAsync();
+                isCanWrite = await BrowserClipboardServiceHelper.requestReadPermissions();
             }
             if (request.Value.Write == true)
             {
-                isCanWrite = await BrowserClipboardServiceHelper.RequestWritePermissionAsync();
+                isCanWrite = await BrowserClipboardServiceHelper.requestWritePermissions();
             }
             return new ClipboardPermission()
             {
@@ -50,12 +54,17 @@ namespace TqkLibrary.Avalonia.ToolKit.Browser.Services
 
         public async Task<ClipboardPermission> HasPermissionAsync()
         {
-            string data = await BrowserClipboardServiceHelper.HasPermissionAsync();
-            return JsonConvert.DeserializeObject<ClipboardPermission>(data);
+            bool isHasRead = await BrowserClipboardServiceHelper.checkReadPermissions();
+            bool isHasWrite = await BrowserClipboardServiceHelper.checkWritePermissions();
+            return new ClipboardPermission()
+            {
+                Read = isHasRead,
+                Write = isHasWrite
+            };
         }
 
-        public Task SetTextAsync(string text) => BrowserClipboardServiceHelper.WriteText(text);
-        public Task<string?> GetTextAsync() => BrowserClipboardServiceHelper.ReadText();
+        public Task SetTextAsync(string text) => BrowserClipboardServiceHelper.writeText(text);
+        public Task<string?> GetTextAsync() => BrowserClipboardServiceHelper.readText();
 
     }
 }

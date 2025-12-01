@@ -1,6 +1,6 @@
 ﻿export function RegisterModule(dotnetRuntime){
     dotnetRuntime.setModuleImports(
-        'localStorageHelper',
+        'TqkLibrary.Avalonia.ToolKit.LocalStorageHelper',
         {
             setItem: (key, value) => globalThis.localStorage.setItem(key, value),
             getItem: (key) => globalThis.localStorage.getItem(key),

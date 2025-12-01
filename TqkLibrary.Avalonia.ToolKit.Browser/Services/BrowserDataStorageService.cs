@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 using System.Text;
@@ -12,12 +13,15 @@ namespace TqkLibrary.Avalonia.ToolKit.Browser.Services
 {
     static unsafe partial class BrowserDataStorageServiceHelper
     {
-        [JSImport("setItem", "localStorageHelper")]
+        [JSImport("setItem", "TqkLibrary.Avalonia.ToolKit.LocalStorageHelper")]
         internal static partial void SetLocalStorage(string key, string json);
 
-        [JSImport("getItem", "localStorageHelper")]
+        [JSImport("getItem", "TqkLibrary.Avalonia.ToolKit.LocalStorageHelper")]
         internal static partial string? GetLocalStorage(string key);
     }
+
+    [RequiresUnreferencedCode(MiscellaneousUtils.TrimWarning)]
+    [RequiresDynamicCode(MiscellaneousUtils.AotWarning)]
     public class BrowserDataStorageService : IDataStorageService
     {
         public bool IsFullTypeName { get; set; } = true;

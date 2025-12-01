@@ -1,9 +1,22 @@
 ﻿using System.Collections.Specialized;
 using TqkLibrary.Avalonia.ToolKit;
 using TqkLibrary.Avalonia.ToolKit.Interfaces;
+using TqkLibrary.Avalonia.ToolKit.Interfaces.Services;
 
 namespace TqkLibrary.Avalonia.ToolKit.Collections.ObservableCollections
 {
+    public class SaveStorageObservableCollection<TData, TViewModel> : SaveObservableCollection<TData, TViewModel>
+      where TData : class
+      where TViewModel : class, IViewModel<TData>
+    {
+        public SaveStorageObservableCollection(
+            IDataStorageService dataStorageService,
+            string? key = null
+            )
+        {
+
+        }
+    }
     /// <summary>
     /// 
     /// </summary>

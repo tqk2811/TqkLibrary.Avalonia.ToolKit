@@ -1,6 +1,6 @@
 ﻿export function RegisterModule(dotnetRuntime) {
     dotnetRuntime.setModuleImports(
-        'clipboardHelper',
+        'TqkLibrary.Avalonia.ToolKit.ClipboardHelper',
         {
             writeText: async (text) => {
                 await globalThis.navigator.clipboard.writeText(text);
@@ -8,13 +8,13 @@
             readText: async () => {
                 return await globalThis.navigator.clipboard.readText();
             },
-            checkPermissions: async () => {
+            checkReadPermissions: async () => {
                 const readPermission = await globalThis.navigator.permissions.query({ name: 'clipboard-read' });
+                return readPermission?.state == 'granted';
+            },
+            checkWritePermissions: async () => {
                 const writePermission = await globalThis.navigator.permissions.query({ name: 'clipboard-write' });
-                return JSON.stringify({
-                    Read: readPermission?.state == 'granted',
-                    Write: writePermission?.state == 'granted',
-                });
+                return writePermission?.state == 'granted';
             },
             requestReadPermissions: async () => {
                 let readGranted = false;
