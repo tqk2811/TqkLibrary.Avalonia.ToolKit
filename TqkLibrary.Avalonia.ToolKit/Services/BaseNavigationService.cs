@@ -12,6 +12,7 @@ namespace TqkLibrary.Avalonia.ToolKit.Services
             get { return _currentView; }
             set { NavigateTo(value!); }
         }
+        public event Action<TBaseViewModel>? OnViewChanged;
 
         protected readonly DispatcherObservableCollection<TBaseViewModel> _back = new();
         protected readonly DispatcherObservableCollection<TBaseViewModel> _next = new();
@@ -25,6 +26,13 @@ namespace TqkLibrary.Avalonia.ToolKit.Services
         {
             _back.CollectionChanged += _back_CollectionChanged;
             _next.CollectionChanged += _next_CollectionChanged;
+            base.PropertyChanged += BaseNavigationService_PropertyChanged;
+        }
+
+        private void BaseNavigationService_PropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (nameof(CurrentView).Equals(e.PropertyName))
+                OnViewChanged?.Invoke(CurrentView!);
         }
 
         private void _back_CollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

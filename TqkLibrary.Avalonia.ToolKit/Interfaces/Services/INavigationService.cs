@@ -10,6 +10,7 @@ namespace TqkLibrary.Avalonia.ToolKit.Interfaces.Services
     public interface INavigationService<TBaseViewModel>
     {
         TBaseViewModel? CurrentView { get; }
+        event Action<TBaseViewModel>? OnViewChanged;
         bool IsBackAvalable { get; }
         bool IsNextAvalable { get; }
         void NavigateTo<TViewModel>() where TViewModel : TBaseViewModel;
