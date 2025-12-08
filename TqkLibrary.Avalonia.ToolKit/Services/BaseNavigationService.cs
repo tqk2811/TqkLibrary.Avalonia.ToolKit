@@ -39,6 +39,7 @@ namespace TqkLibrary.Avalonia.ToolKit.Services
         public virtual void NavigateTo(TBaseViewModel viewModel)
         {
             if (viewModel is null) throw new ArgumentNullException(nameof(viewModel));
+            if (viewModel.Equals(CurrentView)) return;
 
             this.OnPropertyChanging(nameof(CurrentView));
             _next.Clear();
