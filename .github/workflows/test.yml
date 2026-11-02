@@ -17,7 +17,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 10.0.x
 
       # No test project runs on CI (no test project in this repo): this job is a build gate.
       # Skip GitVersion: it fails on branches without a full SemVer tag.
